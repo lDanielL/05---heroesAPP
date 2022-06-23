@@ -6,6 +6,7 @@ import { HeroesService } from '../../services/heroes.service';
   selector: 'app-listado',
   templateUrl: './listado.component.html',
   styles: [
+
   ]
 })
 export class ListadoComponent implements OnInit {

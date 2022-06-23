@@ -1,1 +1,74 @@
-<p>agregar works!</p>
+<h1>
+    {{(heroe.id)?'Editar':'Nuevo'}} Héroe <small>{{heroe.superhero}}</small>
+</h1>
+
+<div fxLayout="row" fxLayoutGap="40px" fxLayout.xs="column">
+
+    <div fxFlex="50" fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="20px" fxLayout.xs="column">
+            <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>Super Héroe</mat-label>
+                <input matInput required="" type="text" [(ngModel)]="heroe.superhero">
+                <mat-icon matSuffix>settings_accessibility</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>Alter Ego</mat-label>
+                <input matInput required="" type="text" [(ngModel)]="heroe.alter_ego">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            </mat-form-field>
+
+        </div>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Primera Aparición</mat-label>
+            <input matInput required="" type="text" [(ngModel)]="heroe.first_appearance">
+            <mat-icon matSuffix>arrow_outward </mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Personajes</mat-label>
+            <input matInput required="" type="text" [(ngModel)]="heroe.characters">
+            <mat-icon matSuffix>groups</mat-icon>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+            <mat-label>Creador</mat-label>
+            <mat-select [(ngModel)]="heroe.publisher" required="">
+                <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">
+                    {{publisher.desc}}
+                </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>emoji_people </mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Foto Url</mat-label>
+            <input matInput required type="text" [(ngModel)]="heroe.alt_img">
+            <mat-icon matSuffix>dataset_linked </mat-icon>
+        </mat-form-field>
+        <br>
+
+        <div fxLayout>
+
+            <button *ngIf="heroe.id" mat-raised-button color="warn" (click)="borrarHeroe()">
+                        <mat-icon>remove</mat-icon>
+                        Borrar
+                    </button>
+            <span class="spacer"></span>
+
+            <button mat-raised-button color="primary" (click)="guardar()">
+                        <mat-icon>add</mat-icon>
+                        {{(heroe.id)?'Editar':'Crear'}}
+                    </button>
+
+        </div>
+    </div>
+
+    <div fxFlex="50">
+        <img [src]="heroe | imagen" alt="">
+
+    </div>
+
+</div>
